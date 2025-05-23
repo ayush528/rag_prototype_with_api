@@ -1,17 +1,30 @@
-Multilingual Voice Chat RAG System Documentation
-Overview
+# RAG Prototype with API
+
+This repo contains a prototype of a Retrieval-Augmented Generation (RAG) system with API support.
+
+## 📔 Open the Notebook
+
+You can run the notebook directly in the browser using Google Colab or Binder:
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ayush528/rag_prototype_with_api/blob/master/rag_prototype_with_api.ipynb)
+
+[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ayush528/rag_prototype_with_api/master?filepath=rag_prototype_with_api.ipynb)
+
+
+
+# Overview
 This prototype implements a multilingual voice-based Retrieval-Augmented Generation (RAG) system designed for visually impaired users. It enables voice-driven content search and interaction, delivering responses in both text and audio formats for accessibility. The system uses open-source tools for speech-to-text (STT), semantic retrieval, and text-to-speech (TTS), with response generation via Google’s Gemini API (accessed through an OpenAI-compatible client). Optimized for Google Colab, it supports on-premise deployment considerations by leveraging local models where possible.
 Pipeline Design
 The pipeline processes a voice query from an uploaded audio file (input.wav), retrieves relevant documents from a corpus, generates a response, and outputs it as text and audio. The steps are:
 
-Voice Input (STT):
+# Voice Input (STT):
 
 Tool: OpenAI Whisper (tiny model).
 Function: Transcribes audio input (input.wav, 16kHz WAV) into text.
 Details: Supports multilingual transcription, currently set to English for simplicity. Audio is sampled at 16kHz for compatibility with Whisper.
 
 
-Document Retrieval:
+# Document Retrieval:
 
 Embedding Model: SentenceTransformers (all-MiniLM-L6-v2).
 Vector Store: FAISS (FlatL2 index).
@@ -19,7 +32,7 @@ Function: Embeds a corpus of documents and the transcribed query into 384-dimens
 Details: The corpus is stored in corpus.txt, with documents sourced from a book excerpt on web accessibility (e.g., screen readers, WCAG 2.1).
 
 
-Response Generation:
+# Response Generation:
 
 Tool: Google Gemini API (gemini-2.5-flash-preview-04-17, via OpenAI client).
 Function: Generates a natural language response using the transcribed query and retrieved documents as context.
@@ -34,7 +47,7 @@ Details: Audio is generated in English; text output ensures accessibility for sc
 
 
 
-Tools Used
+# Tools Used
 
 Whisper: Multilingual STT model for transcribing voice queries.
 SentenceTransformers: Generates dense embeddings for semantic retrieval.
@@ -45,7 +58,7 @@ Librosa/Soundfile: Processes audio files, avoiding PortAudio dependencies.
 Scipy: Optional for local audio recording with scipy.io.wavfile.write.
 OpenAI Client: Facilitates API calls to Gemini’s endpoint.
 
-Implementation Notes
+# Implementation Notes
 
 Corpus:
 The corpus is a ~550-word excerpt from a hypothetical book chapter, “The World Wide Web and Accessibility,” split into 8 documents. Topics include screen readers, semantic HTML, keyboard navigation, and WCAG 2.1, aligning with the prototype’s accessibility focus.
@@ -78,7 +91,7 @@ No PortAudio/sounddevice dependencies in Colab, ensuring smooth execution.
 
 
 
-Setup Instructions
+# Setup Instructions
 
 Environment:
 Open rag_prototype_with_api.ipynb in Google Colab.
@@ -132,7 +145,7 @@ output.wav: Audio response via Coqui TTS.
 
 
 
-Test Case
+# Test Case
 
 Corpus: 8 documents from a ~550-word book excerpt on web accessibility, covering screen readers, semantic HTML, keyboard navigation, etc.
 Query: “How do screen readers help visually impaired users?” (recorded in input.wav).
@@ -145,7 +158,7 @@ Outputs: response.txt and output.wav match the response.
 
 Verification: Check printed outputs (Transcribed Query, Retrieved Documents, Generated Response) and play output.wav.
 
-Limitations
+# Limitations
 
 Colab Audio Input: Requires uploaded input.wav due to lack of microphone access in Colab.
 Whisper Model: The tiny model may have lower accuracy for non-English or noisy audio. Use larger models (e.g., base) for better performance.
@@ -153,7 +166,7 @@ External API: The Gemini API is cloud-based, conflicting with on-premise goals. 
 Corpus Size: The book excerpt (~550 words, 8 documents) is small. Scaling to larger corpora requires optimized FAISS indexing.
 Multilingual Support: Limited to English; full multilingual support requires language detection in Whisper.
 
-Future Improvements
+# Future Improvements
 
 Multilingual Support: Enable language detection in Whisper (language=None) for multilingual queries.
 Local LLM: Replace Gemini API with a local model (e.g., LLaMA) for on-premise deployment.
@@ -168,7 +181,7 @@ Displaying printed outputs: transcribed query, retrieved documents, generated re
 Playing output.wav to verify audio output.
 Showing response.txt and corpus.txt.Use a screen recording tool (e.g., OBS Studio) and save as demo_video.mp4. Upload to the GitHub repository.
 
-Repository Structure
+# Repository Structure
 
 rag_prototype_with_api.ipynb: Colab notebook with RAG pipeline.
 corpus.txt: Book excerpt corpus.
@@ -179,15 +192,6 @@ README.md: Project overview and setup.
 docs/rag_system_documentation.md: Detailed pipeline documentation.
 demo_video.mp4: Demo video.
 
-# RAG Prototype with API
 
-This repo contains a prototype of a Retrieval-Augmented Generation (RAG) system with API support.
 
-## 📔 Open the Notebook
-
-You can run the notebook directly in the browser using Google Colab or Binder:
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ayush528/rag_prototype_with_api/blob/master/rag_prototype_with_api.ipynb)
-
-[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ayush528/rag_prototype_with_api/master?filepath=rag_prototype_with_api.ipynb)
 
