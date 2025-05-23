@@ -1,0 +1,1 @@
+Screen readers convert digital text into synthesized speech or braille output, allowing visually impaired users to hear or read content and navigate and interact with digital platforms like websites and applications.
